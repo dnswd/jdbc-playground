@@ -90,6 +90,16 @@
             dbeaver-bin
             wireshark
           ];
+          buildInputs = [
+            (pkgs.writeShellApplication {
+              name = "run-test";
+              text = ''
+                #!${pkgs.runtimeShell}
+                javac -cp postgresql-42.6.0.jar Test.java
+                java -cp postgresql-42.6.0.jar:. Test
+              '';
+            })
+          ];
         };
       };
     };
