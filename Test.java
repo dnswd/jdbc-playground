@@ -19,11 +19,11 @@ class Test {
             // -- one-off
             ResultSet result;
             Statement statement = connection.createStatement();
-            
+
             // result = statement.executeQuery("select now()");
             // result.next();
             // result.close();
-            
+
             // -- batch
             statement.execute("create table if not exists test(id int primary key, f1 text)");
             statement.execute("truncate table test");
@@ -33,7 +33,7 @@ class Test {
             statement.addBatch("insert into test (id, f1) values (3, 'C')");
 
             for (int i = 4; i < 1000; i++) {
-            statement.addBatch("insert into test (id, f1) values (" + i + ", 'C')");
+                statement.addBatch("insert into test (id, f1) values (" + i + ", 'C')");
             }
 
             System.out.println("DONE");
